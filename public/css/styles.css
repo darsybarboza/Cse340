@@ -184,95 +184,6 @@ ul, p, a{
 }
 
 
-/* Grid styles */
-.grid-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 20px;
-  padding: 20px;
-}
-
-.grid-item {
-  background-color: #f0f0f0;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  list-style-type: none;
-}
-
-.grid-item:hover {
-  background-color: #e0e0e0;
-  transform: translateY(-2px);
-}
-
-.grid-image {
-  max-width: 100%;
-  border-radius: 5px;
-}
-
-.namePrice {
-  margin-top: 10px;
-}
-
-.grid-title {
-  font-size: 1.2em;
-  margin: 10px 0;
-}
-
-.grid-link {
-  text-decoration: none;
-  color: black;
-}
-
-.grid-price {
-  font-size: 1.2em;
-  color: green;
-}
-
-/* Vehicle info styles */
-.vehicle-info {
-  display: flex;
-  flex-wrap: wrap; 
-}
-
-.vehicle-image {
-  flex: 1; 
-  max-width: 100%; 
-  height: auto; 
-  margin-right: 20px; 
-  margin-bottom: 20px; 
-}
-
-  .vehicle-item {
-    display: flex;
-    flex-direction: column; 
-    margin-bottom: 20px;
-  }
-
-.vehicle-title {
-  flex: 0; 
-  margin-top: 0; 
-}
-
-.details-info {
-  flex: 1; 
-}
-
-
-.vehicle-price {
-  font-size: 1.5em;
-  color: green;
-}
-
-
-
-
-
-
-
-
-
 
 @media (min-width: 992px) {
   #overlayContainer, header, nav, main, footer, #homeContainer {
@@ -331,11 +242,11 @@ ul, p, a{
     max-width: none;
   }
   .vehicle-info {
-    flex-direction: column; /* El contenido se apila verticalmente en pantallas pequeñas */
+    flex-direction: column; 
   }
 
   .vehicle-image {
-    margin-right: 0; /* Elimina el margen derecho en pantallas pequeñas */
-    margin-bottom: 10px; /* Reduce el espacio debajo de la imagen en pantallas pequeñas */
+    margin-right: 0; 
+    margin-bottom: 10px; 
   }
 }
