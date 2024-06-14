@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "Starter project for CSE 340",
   "main": "server.js",
-  "pnpm": "^8.15.5",
   "scripts": {
     "start": "node server.js",
     "dev": "nodemon server.js"
@@ -20,8 +19,8 @@
   "devDependencies": {
     "nodemon": "^3.1.0"
   },
-  "packageManager": "pnpm@9.3.0+sha512.ee7b93e0c2bd11409c6424f92b866f31d3ea1bef5fbe47d3c7500cdc3c9668833d2e55681ad66df5b640c61fa9dc25d546efa54d76d7f8bf54b13614ac293631"
-  
+  "packageManager": "pnpm@9.3.0+sha512.ee7b93e0c2bd11409c6424f92b866f31d3ea1bef5fbe47d3c7500cdc3c9668833d2e55681ad66df5b640c61fa9dc25d546efa54d76d7f8bf54b13614ac293631",
+  "pnpm": "^8.15.5" 
 
    
 }
