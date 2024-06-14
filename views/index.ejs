@@ -1,44 +1,50 @@
-<h1> Welcome to the CSE Motors</h1>
-<%- messages() %>
-<section id="hero">
-    <img src="images/vehicles/delorean.jpg" alt="">
-    <div>
-        <h2>DMC Delorean</h2>
-        <ul>
-            <li>3 Cup holders</li>
-            <li>Superman doors</li>
-            <li>Fuzzy dicel</li>
-        </ul>
-        <a href="/"><img src="images/site/own_today.png" alt="Own today picture"></a>
+<div id="homeContainer">
+
+    <h2>Welcome to CSE Motors</h2>
+    <div id="imageContainer">
+        <img id="homeImage" src="images/vehicles/delorean.jpg" alt="Home page image">
+        <div id="homeImageText">
+            <h3>DCM Delorean</h3>
+            <p>3 Cup Holders</p>
+            <p>Superman doors</p>
+            <p>Fuzzy dice!</p>
+            <button id="homeImageButton">
+                <img src="images/site/own_today.png" alt="Own Today" style="width: 100%; height: 100%;">
+            </button>
+        </div>
     </div>
-</section>
-<section id="last-section">
-    <div id="reviews">
-        <h2>DMC Delorean Reviews</h2>
-        <ul>
-            <li>"So fast it's almost like traveling in time." (4/5)</li>
-            <li>"Coolest Ride on the road." (4/5)</li>
-            <li>"I'm feeling McFlyl." (5/5)</li>
-            <li>"The most futuristic ride of our day." (4.5/5)</li>
-            <li>"80's livin and I love it." (5/5)</li>
-        </ul>
+
+    <div id="contentContainer">
+        <div class="reviews">
+            <h3>DMC Delorean Reviews</h3>
+            <ul>
+                <li>"So fast it's almost like traveling in time" (4/5)</li>
+                <li>"Coolest ride on the road" (4/5)</li>
+                <li>"I am feeling McFly!" (5/5)</li>
+                <li>"The most futuristic ride of our day" (4.5/5)</li>
+                <li>"80's livi and I love it!" (5/5)</li>
+            </ul>
+        </div>
+        <div class="upgrades-section">
+            <h3>Delorean Upgrades</h3>
+            <div id="upgradesTable">
+                <div id="img1Upgrades">
+                    <img src="images/upgrades/flux-cap.png" alt="Flux Capacitor">
+                    <a href="/">Flux Capacitor</a>
+                </div>
+                <div id="img2Upgrades">
+                    <img src="images/upgrades/flame.jpg" alt="Flame Decals">
+                    <a href="/">Flame Decals</a>
+                </div>
+                <div id="img3Upgrades">
+                    <img src="images/upgrades/bumper_sticker.jpg" alt="Bumper Stickers">
+                    <a href="/">Bumper Stickers</a>
+                </div>
+                <div id="img4Upgrades">
+                    <img src="images/upgrades/hub-cap.jpg" alt="Hub Caps">
+                    <a href="/">Hub Caps</a>
+                </div>
+            </div>
+        </div>
     </div>
-    <div id="upgrades">
-        <h2>Delorean Upgrades</h2>
-        <figure><img src="images/upgrades/flux-cap.png" alt="Flux Capacitor">
-        <figcaption><a href="">Flux Capacitor</a></figcaption>
-        </figure>
-        <figure>
-            <img src="images/upgrades/flame.jpg" alt="Flame Decals">
-            <figcaption><a href="">Flame Decals</a></figcaption>
-        </figure>
-        <figure>
-            <img src="images/upgrades/bumper_sticker.jpg" alt="Bumper Stickers">
-            <figcaption><a href="">Bumper Stickers</a></figcaption>
-        </figure>
-        <figure>
-            <img src="images/upgrades/hub-cap.jpg" alt="Hub Caps">
-            <figcaption><a href="">Hub Caps</a></figcaption>
-        </figure>
-    </div>
-</section>
+</div>
