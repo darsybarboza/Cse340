@@ -226,3 +226,13 @@ VALUES   (
     'White',
     5
   );
+-- Query 4
+UPDATE public.inventory
+SET 
+inv_description = REPLACE(inv_description, 'small', 'large')
+WHERE inv_id = 10;
+
+-- Query 6
+UPDATE inventory
+SET inv_image = REPLACE(inv_image, '/images/', '/images/vehicles/'),
+inv_thumbnail = REPLACE(inv_thumbnail, '/images/', '/images/vehicles/');
