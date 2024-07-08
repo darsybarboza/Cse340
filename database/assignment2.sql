@@ -1,30 +1,23 @@
--- Query 1
-INSERT INTO public.account (account_firstname, account_lastname, account_email, account_password) VALUES
-    ('Tony', 'Stark', 'tony@starkent.com', 'Iam1ronM@n');
+INSERT INTO public.account (account_firstname, account_lastname, account_email, account_password)
+VALUES ('Tony', 'Stark', 'tony@startkent.com', 'Iam1ronM@n');
 
--- Query 2
 UPDATE public.account
-SET account_type = 'Admin' WHERE
-account_email = 'tony@starkent.com';
+SET account_type = 'Admin'
+WHERE account_firstname = 'Tony';
 
--- Query 3
 DELETE FROM public.account
-WHERE account_email = 'tony@starkent.com';
+WHERE account_firstname = 'Tony';
 
--- Query 4
 UPDATE public.inventory
-SET 
-inv_description = REPLACE(inv_description, 'small', 'large')
+SET inv_description = REPLACE(inv_description, 'small interiors', 'a huge interior')
 WHERE inv_id = 10;
 
--- Query 5
-SELECT inv_make, inv_model
-FROM inventory
-    JOIN classification cl
-    ON inventory.classification_id = cl.classification_id
-WHERE cl.classification_name = 'Sport';
+SELECT public.classification.classification_name, inv_make, inv_model
+FROM public.inventory
+INNER JOIN public.classification
+ON public.inventory.classification_id = public.classification.classification_id
+WHERE public.inventory.classification_id = 2;
 
--- Query 6
-UPDATE inventory
+UPDATE public.inventory
 SET inv_image = REPLACE(inv_image, '/images/', '/images/vehicles/'),
-inv_thumbnail = REPLACE(inv_thumbnail, '/images/', '/images/vehicles/');
+	inv_thumbnail = REPLACE(inv_thumbnail, '/images/', '/images/vehicles/');
