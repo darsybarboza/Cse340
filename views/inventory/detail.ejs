@@ -1,0 +1,9 @@
+<%# The Content Heading %>
+<% if (title) { %>
+  <h1 id="vehicle-title"><%= title %></h1>
+  <% } else {
+      res.redirect('/')
+  } %>
+  
+  <%- messages() %>
+  <%- content %>

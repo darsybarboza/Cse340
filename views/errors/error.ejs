@@ -1,8 +1,7 @@
-<div class="error-page">
-    <h1>Something went wrong!</h1>
-    <p class="error-code"><%- title %></p>
-    <p><%- message %></p>
-    <a href="/">
-        <p class="error-button">Return Home</p>
-    </a>
-</div>
+<% if (title) { %>
+    <h1><%= title %></h1>
+<% } else {
+    res.redirect('/')
+} %>
+
+<%- message %>

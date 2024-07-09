@@ -5,248 +5,421 @@
 *:after {
   box-sizing: border-box;
 }
-html {
-  font-family: 'Noto Sans';
-  font-weight: 900;
-  background-image: url('../images/site/small_check.jpg');
-  background-position: center;
-  background-attachment: fixed;
-  
-  
 
+body {
+  background-image: none;
+  font-family: Inter;
 }
 
-body{
- 
-  background-color: white;
-  border: 6px solid #3182b8;
-  border-radius: 3px;
-  padding: 1rem;
-  width: 60%;
-  margin-left: 20%;
-
-  
-  
+#wrapper {
+  background: white;
+  border: none;
+  margin: 0;
+  padding: 50px 20px;
 }
 
-
-
-#overlayContainer, header, nav, main, footer, #homeContainer {
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 100%;
-  box-sizing: border-box;
-}
-
-
-
-header#top-header {
+header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  
+  margin-bottom: 50px;
 }
 
-nav {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
-
-nav li {
-  display: inline;
-}
-
-nav li a {
-  display: inline-block;
-  padding: 10px 20px;
-  text-decoration: none;
-  color: white;
-  border-radius: 10%;
-}
-
-nav li a:hover {
-  background-color: white; 
-  color: black; 
-}
-
-.siteName{
-  padding: 1.2% 0;
-  font-family: 'Cinzel';
-  
-}
-.siteName a{
-  font-size: 2em;
-  text-decoration: none;
+.siteName a, #tools a {
   color: black;
-  background-color: transparent;
+  text-decoration: none;
+}
+
+.siteName a {
+  font-size: 3.5rem;
 }
 
 #tools {
-  order: 2;
-  padding-right: 30px;
-  font-family: 'Cinzel';
+  text-align: right;
 }
 
-#tools a{
-  text-decoration: none;
-  color: black;
+#tools a {
+  font-size: 2rem;
+}
 
-}
-nav {
-  width: 100%;
-  background-color: rgb(0, 0, 0);
-}
 nav ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
   display: flex;
-  align-items: center;
-  height: 50px;
-}
-
-nav ul li { 
-  flex: 1;
-  text-align: center;
+  flex-direction: row;
+  justify-content: space-between;
+  background: rgb(48, 48, 48);
   color: white;
-  font-family: 'Noto Sans';
+  list-style-type: none;
 }
 
-#imageContainer {
-  position: relative;
-  width: 100%;
-}
-
-#homeImage {
-  width: 100%;   
-  height: auto;
-  display: block;
-} 
-
-#homeImageText {
-  position: absolute; 
-  top: 50%;
-  left: 15%;
-  transform: translate(-40%, -50%);
-  color: white;
-  background-color: rgba(0, 0, 0, 0.5);
+nav ul li {
+  margin: 10px auto;
+  font-size: 1.5rem;
   padding: 5px;
-  height: 100%;
-  max-height:220px ;
-  font-size: 50%;
 }
 
-#homeImageButton {
-  width: 150px;  
-  height: 50px;
-  padding: 0; 
-  border: none;
-  background-color: transparent;
-  overflow: hidden;
+nav ul li:hover {
+  background: white;
 }
 
-#homeImageButton img {
+nav ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+nav ul li a:hover {
+  color: black;
+}
+
+#home-hero h1 {
+  font-size: 2rem;
+}
+
+#home-hero img {
   display: block;
-  width: 100%;
-  height: 100%;
+  margin: auto;
+  width: 50%;
 }
 
-#upgradesTable {
+#hero-ad {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.5);
+  color: rgb(105, 211, 221);
+  border-radius: 5px;
+  width: 25%;
+  font-size: 100%;
+  top: 300px;
+  left: 100px;
+}
+
+#hero-ad a img {
+  width: 75%;
+}
+
+#about-vehicle {
+  display: grid;
+  grid-template-columns: 1fr;
+  margin-top: 50px;
+}
+
+#about-vehicle h3 {
+  font-size: 2rem;
+}
+
+#upgrades {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  gap: 20px;
 }
 
-#upgradesTable div {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background: #457fb358;
+#upgrades, #reviews {
+  grid-column: 1/2;
+}
+
+.upgrade {
+  margin: 20px auto;
   text-align: center;
-  /* padding: 20px; */
-  gap: 10px;
+  width: 100%;
 }
 
-#upgradesTable img {
-  width: 40%; 
-  max-width: 150px;
+.upgrade img{
+  display: block;
+  background: rgb(105, 211, 221);
+  padding: 0 2rem;
+  border: 1px solid black;
+  width: 90%;
   margin: auto;
-}
-h1, h2, h3{
-  font-family: 'Cinzel';
+  object-fit: contain;
 }
 
-ul, p, a{
-  font-size: smaller;
+.upgrade a {
+  font-size: 1.2rem;
 }
 
+#review-title {
+  grid-row: 1/2;
+}
 
+#reviews {
+  grid-row: 2/3;
+  justify-content: center;
+  align-content: center;
+  font-size: 1.5rem;
+}
 
-@media (min-width: 992px) {
-  #overlayContainer, header, nav, main, footer, #homeContainer {
-    margin-left: auto;
-    margin-right: auto;
+#reviews ul li {
+  margin: 40px;
+}
+
+footer {
+  font-size: 1.5rem;
+  margin-bottom: -50px;
+}
+
+@media screen and (min-width: 801px) {
+  body {
+    background-image: url("../images/site/checkerboard.jpg");
   }
 
-  #overlayContainer{
-    border-radius: 2%;
-
+  #wrapper {
+    background: white;
+    border: 8px solid rgb(105, 211, 221);
+    border-radius: 8px;
+    margin: 2rem 5rem 0 5rem;
+    padding: 50px 20px;
   }
 
-  #homeImageText {
-    position: absolute; 
-    top: 10%;
-    left: 10%;
-    transform: translate(-10%, -20%);
-    color: white;
-    background-color: rgba(0, 0, 0, 0.5);
-    padding: 0 10px;
-    font-size: 100%;
+  nav ul li, #reviews{
+    font-size: 2rem;
   }
 
-  #homeImage {
-    display: flex;
-    width: 50%;
-    height: auto;
-    margin: 0 auto;
+  #home-hero h1 {
+    font-size: 3.5rem;
   }
-  #contentContainer {
-    display: flex;
-    justify-content: space-between; 
-    align-items: flex-start; 
-}
 
-.reviews {
-    order: 2; 
-    flex: 2; 
-    padding: 20px;
-    line-height: 3.5vw;
-}
+  #hero-ad {
+    width: 30%;
+    top: 450px;
+    left: 150px;
+    font-size: 120%;
+  }
 
-.upgrades-section {
-    order: 1; 
-    flex: 2; 
-    padding: 20px;
-}
+  #about-vehicle h3 {
+    font-size: 3rem;
+  }
+
+  #about-vehicle {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  #upgrades {
+    grid-column: 1/2;
+  }
+
+  #review-title {
+    grid-row: 1/2;
+  }
   
-
+  #reviews {
+    grid-column: 2/3;
+    grid-row: 2/3;
+  }
 }
 
-@media (max-width: 991px) {
-  #overlayContainer, header, nav, main, footer {
-    margin-left: 0px;
-    margin-right: 0px;
+#inv-display {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+#inv-display li {
+  border: 3px solid rgba(170, 170, 170, 0.802);
+  border-radius: 5px;
+  padding: 1rem;
+  margin: 10px auto;
+  text-align: center;
+  list-style-type: none;
+  width: 350px;
+}
+
+#inv-display li a img {
+  width: 300px;
+  height: auto;
+}
+
+.namePrice {
+  height: 150px;
+  line-height: 50px;
+}
+
+.namePrice span {
+  font-size: 1.8rem;
+}
+
+#vehicle-title {
+  font-size: 2rem;
+}
+
+#vehicle-info {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+#vehicle-info img {
+  padding-top: 2rem;
+  margin: auto;
+  max-width: 75%;
+}
+
+#vehicle-details h2 {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+#vehicle-details ul li {
+  list-style-type: none;
+  padding: 10px;
+  font-size: 1rem;
+}
+
+#vehicle-details ul li:nth-child(odd) {
+  background: rgb(236, 236, 236);
+}
+
+.notice {
+  color: white;
+  background: rgb(105, 211, 221);
+  text-align: center;
+  margin: 20px;
+  padding: 7px;
+  list-style-type: none;
+  width: 20%;
+  position: absolute;
+  right: 8.5rem;
+  border: 3px solid blue;
+  font-size: 1.2rem;
+}
+
+#login-form, #registration-form, #add-classification-form, #add-inventory-form {
+  padding: 50px;
+  border-radius: 10px;
+  margin: auto;
+  max-width: 700px;
+}
+
+#login-form {
+  background: rgb(17, 50, 80);
+  border: 5px solid gray;
+}
+
+#login-form label, #registration-form label, #add-classification-form label, #add-inventory-form label {
+  font-size: 1.5rem;
+  margin-left: 2.5rem;
+}
+
+#login-form label {
+  color: white;
+}
+
+.login-input, .registration-input, .add-classification-input, .add-inventory-input {
+  display: block;
+  margin: 10px auto;
+  width: 80%;
+  border-radius: 5px;
+  font-size: 1.7rem;
+}
+
+.button-holder {
+  text-align: center;
+  margin: 30px;
+}
+
+.login-button, .registration-button, .add-classification-button, .add-inventory-button {
+  font-size: 1.5rem;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.login-button {
+  border: 1px solid rgb(105, 211, 221);
+}
+
+#login-form h2 {
+  text-align: center;
+  color: white;
+  margin: 30px auto;
+}
+
+#login-form h2 a {
+  color: white;
+}
+
+#registration-form, #add-classification-form, #add-inventory-form {
+  border: 5px solid black;
+}
+
+#registration-form label {
+  color: black;
+}
+
+.registration-button {
+  color: white;
+  border: none;
+  background: rgb(26, 79, 176);
+}
+
+#login-form span, #registration-form span, #add-classification-form span {
+  display: block;
+  text-align: center;
+  margin: 20px;
+}
+
+#login-form span {
+  color: white;
+}
+
+#registration-form span {
+  color: black;
+}
+
+input:required:invalid, input:focus:invalid {
+  border: 2px solid red;
+}
+
+input:required:valid {
+  border: 2px solid green;
+}
+
+.management-link {
+  display: block;
+  font-size: 1.3rem;
+  margin: 30px;
+}
+
+#add-inventory-form select {
+  display: block;
+  width: 50%;
+  margin: 10px auto;
+  font-size: 1.5rem;
+}
+
+#add-inventory-desc {
+  max-width: 500px;
+  max-height: 1500px;
+}
+
+@media screen and (min-width: 1000px) {
+  #vehicle-title {
+    font-size: 2.5rem;
+  }
+  
+  #vehicle-info {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  #vehicle-info img {
+    grid-column: 1/2;
+    padding: 2.5rem;
     max-width: none;
   }
-  .vehicle-info {
-    flex-direction: column; 
+  
+  #vehicle-details {
+    grid-column: 2/3;
   }
+  
+  #vehicle-details h2 {
+    font-size: 2rem;
+    text-align: left;
+  }
+  
+  #vehicle-details ul li {
+    margin: 1.5rem -1rem;
+    font-size: 1.5rem;
+  }
+}
 
-  .vehicle-image {
-    margin-right: 0; 
-    margin-bottom: 10px; 
+@media screen and (min-width: 1750px) {
+  #hero-ad {
+    width: 20%;
+    left: 350px;
+    font-size: 150%;
   }
 }
