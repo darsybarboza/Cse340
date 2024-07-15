@@ -153,56 +153,6 @@ footer {
   margin-bottom: -50px;
 }
 
-@media screen and (min-width: 801px) {
-  body {
-    background-image: url("../images/site/checkerboard.jpg");
-  }
-
-  #wrapper {
-    background: white;
-    border: 8px solid rgb(105, 211, 221);
-    border-radius: 8px;
-    margin: 2rem 5rem 0 5rem;
-    padding: 50px 20px;
-  }
-
-  nav ul li, #reviews{
-    font-size: 2rem;
-  }
-
-  #home-hero h1 {
-    font-size: 3.5rem;
-  }
-
-  #hero-ad {
-    width: 30%;
-    top: 450px;
-    left: 150px;
-    font-size: 120%;
-  }
-
-  #about-vehicle h3 {
-    font-size: 3rem;
-  }
-
-  #about-vehicle {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  #upgrades {
-    grid-column: 1/2;
-  }
-
-  #review-title {
-    grid-row: 1/2;
-  }
-  
-  #reviews {
-    grid-column: 2/3;
-    grid-row: 2/3;
-  }
-}
-
 #inv-display {
   display: flex;
   flex-wrap: wrap;
@@ -278,7 +228,7 @@ footer {
   font-size: 1.2rem;
 }
 
-#login-form, #registration-form, #add-classification-form, #add-inventory-form {
+#login-form, #registration-form, #add-classification-form, .inventory-form {
   padding: 50px;
   border-radius: 10px;
   margin: auto;
@@ -290,7 +240,7 @@ footer {
   border: 5px solid gray;
 }
 
-#login-form label, #registration-form label, #add-classification-form label, #add-inventory-form label {
+#login-form label, #registration-form label, #add-classification-form label, .inventory-form label {
   font-size: 1.5rem;
   margin-left: 2.5rem;
 }
@@ -299,7 +249,7 @@ footer {
   color: white;
 }
 
-.login-input, .registration-input, .add-classification-input, .add-inventory-input {
+.login-input, .registration-input, .add-classification-input, .inventory-input {
   display: block;
   margin: 10px auto;
   width: 80%;
@@ -312,7 +262,7 @@ footer {
   margin: 30px;
 }
 
-.login-button, .registration-button, .add-classification-button, .add-inventory-button {
+.login-button, .registration-button, .add-classification-button, .inventory-button {
   font-size: 1.5rem;
   border-radius: 10px;
   padding: 20px;
@@ -332,7 +282,7 @@ footer {
   color: white;
 }
 
-#registration-form, #add-classification-form, #add-inventory-form {
+#registration-form, #add-classification-form, .inventory-form {
   border: 5px solid black;
 }
 
@@ -346,7 +296,7 @@ footer {
   background: rgb(26, 79, 176);
 }
 
-#login-form span, #registration-form span, #add-classification-form span {
+#login-form span, #registration-form span, #add-classification-form span, .inventory-form span {
   display: block;
   text-align: center;
   margin: 20px;
@@ -374,16 +324,98 @@ input:required:valid {
   margin: 30px;
 }
 
-#add-inventory-form select {
+.inventory-form select {
   display: block;
   width: 50%;
   margin: 10px auto;
   font-size: 1.5rem;
 }
 
-#add-inventory-desc {
+.inventory-desc {
   max-width: 500px;
   max-height: 1500px;
+}
+
+#inventoryDisplay {
+  margin: auto;
+  border: 2px solid black;
+  width: 75%;
+  font-size: 1.2rem;
+}
+
+#inventoryDisplay thead tr th {
+  border-bottom: 2px solid black;
+  text-align: center;
+  padding: 5px;
+  font-size: 1.3rem;
+}
+
+#inventoryDisplay tbody tr:nth-child(even) {
+  background: rgb(139, 218, 225);
+}
+
+#inventoryDisplay tbody tr td {
+  text-align: center;
+  padding: 10px;
+}
+
+#inventoryDisplay tbody tr td a {
+  color: black;
+  text-decoration: none;
+}
+
+.inventory-form {
+  margin: 25px auto;
+}
+
+@media screen and (min-width: 801px) {
+  body {
+    background-image: url("../images/site/checkerboard.jpg");
+  }
+
+  #wrapper {
+    background: white;
+    border: 8px solid rgb(105, 211, 221);
+    border-radius: 8px;
+    margin: 2rem 5rem 0 5rem;
+    padding: 50px 20px;
+  }
+
+  nav ul li, #reviews{
+    font-size: 2rem;
+  }
+
+  #home-hero h1 {
+    font-size: 3.5rem;
+  }
+
+  #hero-ad {
+    width: 30%;
+    top: 450px;
+    left: 150px;
+    font-size: 120%;
+  }
+
+  #about-vehicle h3 {
+    font-size: 3rem;
+  }
+
+  #about-vehicle {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  #upgrades {
+    grid-column: 1/2;
+  }
+
+  #review-title {
+    grid-row: 1/2;
+  }
+  
+  #reviews {
+    grid-column: 2/3;
+    grid-row: 2/3;
+  }
 }
 
 @media screen and (min-width: 1000px) {
