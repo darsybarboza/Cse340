@@ -4,15 +4,15 @@ const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 require("dotenv").config()
 
-
-
 /* ****************************************
 *  Deliver login view
 * *************************************** */
 async function buildLogin(req, res, next) {
     let nav = await utilities.getNav()
+    let links = utilities.getAccountLinks()
     res.render("./account/login", {
       title: "Login",
+      links,
       nav,
       errors: null,
   })
@@ -23,6 +23,7 @@ async function buildLogin(req, res, next) {
 * *************************************** */
 async function registerAccount(req, res) {
   let nav = await utilities.getNav()
+  let links = utilities.getAccountLinks()
   const { account_firstname, 
     account_lastname, 
     account_email, 
@@ -38,6 +39,7 @@ async function registerAccount(req, res) {
     req.flash("notice", "Sorry, there was an error processing the registration.")
     res.status(500).render("account/register", {
       title: "Register",
+      links,
       nav,
       errors: null
     })
@@ -57,6 +59,7 @@ async function registerAccount(req, res) {
     )
     res.status(201).render("account/login", {
       title: "Login",
+      links,
       nav,
       errors: null
     })
@@ -64,6 +67,7 @@ async function registerAccount(req, res) {
     req.flash("notice", "Sorry, the registration failed.")
     res.status(501).render("account/registration", {
       title: "Register",
+      links,
       nav,
     })
   }
@@ -74,15 +78,18 @@ async function registerAccount(req, res) {
 * *************************************** */  
 async function buildRegistration(req, res, next) {
   let nav = await utilities.getNav()
+  let links = utilities.getAccountLinks()
     res.render("./account/registration", {
       title: "Register",
+      links,
       nav,
       errors: null,
     })
 }
+
 /* ****************************************
-*  Process login request
-* *************************************** */    
+ *  Process login request
+ * ************************************ */
 async function accountLogin(req, res) {
   let nav = await utilities.getNav()
   let links = utilities.getAccountLinks()
