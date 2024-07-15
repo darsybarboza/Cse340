@@ -1,7 +1,10 @@
 const invModel = require("../models/inventory-model")
+const jwt = require("jsonwebtoken")
+require("dotenv").config()
 const Util = {}
+let cookies
 
-//Constrols the nav HTML unordered list
+//Controls the nav HTML unordered list
 Util.getNav = async function (req, res, next) {
     let data = await invModel.getClassifications()
     let list = "<ul>"
@@ -92,6 +95,102 @@ Util.buildClassificationList = async function (classification_id = null) {
     classificationList += "</select>"
     return classificationList
   }
+
+/* ****************************************
+* Middleware to check token validity
+**************************************** */
+Util.checkJWTToken = (req, res, next) => {
+  cookies = req.cookies
+    if (req.cookies.jwt) {
+     jwt.verify(
+      req.cookies.jwt,
+      process.env.ACCESS_TOKEN_SECRET,
+      function (err, accountData) {
+       if (err) {
+        req.flash("Please log in")
+        res.clearCookie("jwt")
+        return res.redirect("/account/login")
+       }
+       res.locals.accountData = accountData
+       res.locals.loggedin = 1
+       next()
+      })
+    } else {
+     next()
+    }
+   }
+
+/* ****************************************
+ *  Check Login
+ * ************************************ */
+Util.checkLogin = (req, res, next) => {
+  if (res.locals.loggedin) {
+    next()
+  } else {
+    req.flash("notice", "Please log in.")
+    return res.redirect("/account/login")
+  }
+}
+
+/* ****************************************
+ *  Get the account data
+ * ************************************ */
+Util.getAccountData = (req, res, next) => {
+  return jwt.verify(cookies.jwt, process.env.ACCESS_TOKEN_SECRET)
+}
+
+/* ****************************************
+ *  Get the account link(s)
+ * ************************************ */
+Util.getAccountLinks = (req, res, next) => {
+  let links
+    if (cookies.jwt) {
+      let account_data = jwt.verify(cookies.jwt, process.env.ACCESS_TOKEN_SECRET)
+      links = `<a title="Manage account" href="/account/">Welcome ${account_data.account_firstname}  | </a>
+      <a title="Click to log out" href="/logout">Logout</a>`
+      return links
+    } else {
+    links = `<a title="Click to log in" href="/account/login">My Account</a>`
+    return links
+    }
+} 
+
+/* ****************************************
+*  Check account type
+* ************************************ */
+Util.checkAccountType = (req, res, next) => {
+  if (cookies.jwt) {
+    let account_data = jwt.verify(cookies.jwt, process.env.ACCESS_TOKEN_SECRET)
+    if (account_data.account_type == "Client") {
+      req.flash("notice", "Access Denied: Employees and Administrators Only")
+      return res.redirect("/account/login")
+    } else {
+      next()
+    }
+  } else {
+    req.flash("notice", "Access Denied: Employees and Administrators Only")
+    return res.redirect("/account/login")
+  }
+}
+
+/* ****************************************
+*  Build account management view
+* ************************************ */
+Util.buildAccountManagementView = (req, res, next) => {
+  let account_data = jwt.verify(cookies.jwt, process.env.ACCESS_TOKEN_SECRET)
+  let content = `<h2>Welcome ${account_data.account_firstname}</h2>
+  <p>You're logged in.</p>
+  <a href="/account/update">Edit Account Information</a>`
+  
+  if (account_data.account_type != "Client") {
+    content += `
+    <h3>Inventory Management</h3>
+    <a href="/inv">Manage Inventory</a>`
+  }
+
+  return content
+}
+
 
 //Error handling
 Util.handleErrors = fn => (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next)

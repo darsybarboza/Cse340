@@ -1,0 +1,39 @@
+<% if (title) { %>
+    <h1><%= title %></h1>
+    <% } else {
+        res.redirect('/')
+    } %>
+    
+<%- messages() %>
+<% if (errors) { %>
+    <ul class="notice">
+        <% errors.array().forEach(error => { %>
+            <li><%= error.msg %></li>
+        <% }) %>
+    </ul>
+<% } %>
+
+<form action="/account/update-info" method="post" class="inventory-form" id="updateInformationForm">
+    <label>First name<input type="text" name="account_firstname" class="inventory-input" required value="<%= locals.account_firstname %>"></label>
+    <label>Last name<input type="text" name="account_lastname" class="inventory-input" required value="<%= locals.account_lastname %>"></label>
+    <label>Email:<input type="email" name="account_email" class="inventory-input" required value="<%= locals.account_email %>" placeholder="Enter a valid email address"></label>
+    <div class="button-holder">
+        <button class="inventory-button">Update</button>
+    </div>
+    <input type="hidden" name="account_id"
+    <% if(locals.account_id) { %> value="<%= locals.account_id %>"
+    <% } %>>
+</form>
+
+<form action="/account/change-password" method="post" class="inventory-form" id="changePasswordForm">
+    <h2>Change Password</h2>
+    <span>Passwords must be at least 12 characters and contain at least 1 number, 1 capital letter and 1 special character</span>
+    <span>This will change your password</span>
+    <label>Password:<input type="password" name="account_password" class="inventory-input" required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$"></label>
+    <div class="button-holder">
+        <button class="inventory-button">Change Password</button>
+    </div>
+    <input type="hidden" name="account_id"
+    <% if(locals.account_id) { %> value="<%= locals.account_id %>"
+    <% } %>>
+</form>

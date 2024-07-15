@@ -6,19 +6,19 @@ const utilities = require("../utilities/index")
 const formValidate = require("../utilities/inventory-validation")
 
 // Route to build inventory by classification view
-router.get("/type/:classificationId", invController.buildByClassificationId);
+router.get("/type/:classificationId", utilities.handleErrors(invController.buildByClassificationId));
 
 // Route to build individual vehicle view
-router.get("/detail/:invId", invController.buildByInvId);
+router.get("/detail/:invId", utilities.handleErrors(invController.buildByInvId));
 
 // Route to build management view
-router.get("/", invController.buildManagementView);
+router.get("/", utilities.checkAccountType, utilities.handleErrors(invController.buildManagementView));
 
 // Route to add classification view
-router.get("/add-classification", invController.buildAddClassification)
+router.get("/add-classification", utilities.checkAccountType, utilities.handleErrors(invController.buildAddClassification))
 
 // Route to add inventory view
-router.get("/add-inventory", invController.buildAddInventory)
+router.get("/add-inventory", utilities.checkAccountType, utilities.handleErrors(invController.buildAddInventory))
 
 // On new classification view submitted
 router.post(
@@ -34,6 +34,29 @@ router.post(
     formValidate.newVehicleRules(),
     formValidate.checkNewVehicleData,
     utilities.handleErrors(invController.processNewVehicle)
+)
+
+// Inventory management
+router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON))
+
+// Edit inventory
+router.get("/edit/:invId", utilities.handleErrors(invController.editInventoryView))
+
+// On vehicle edited
+router.post(
+    "/update/",
+    formValidate.newVehicleRules(),
+    formValidate.checkNewVehicleData,
+    utilities.handleErrors(invController.updateVehicle)
+)
+
+// Delete inventory
+router.get("/delete/:invId", utilities.handleErrors(invController.deleteInventoryView))
+
+// On vehicle deleted
+router.post(
+    "/delete",
+    utilities.handleErrors(invController.deleteVehicle)
 )
 
 module.exports = router;

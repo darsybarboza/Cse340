@@ -1,5 +1,6 @@
 const express = require('express');
 const baseController = require('../controllers/baseController');
+const Util = require('../utilities');
 const router = express.Router();
 
 // Static Routes
@@ -12,7 +13,7 @@ router.use("/images", express.static(__dirname + "public/images"));
 // Error Route
 router.get("/stinky", baseController.produceError)
 
+// Logout Route
+router.get("/logout", Util.handleErrors(baseController.logout))
+
 module.exports = router;
-
-
-

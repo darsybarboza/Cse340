@@ -14,7 +14,7 @@
     </ul>
 <% } %>
 
-<form class="inventory-form" method="post">
+<form id="updateForm" class="inventory-form" action="/inv/update" method="post">
     <label>Classification<%- classificationList %></label>
     <label>Make<input type="text" name="inv_make" class="inventory-input" required value="<%= locals.inv_make %>"></label>
     <label>Model<input type="text" name="inv_model" class="inventory-input" required value="<%= locals.inv_model %>"></label>
@@ -26,6 +26,10 @@
     <label>Miles<input type="text" name="inv_miles" class="inventory-input" pattern="[0-9]+" required value="<%= locals.inv_miles %>"></label>
     <label>Color<input type="text" name="inv_color" class="inventory-input" required value="<%= locals.inv_color %>"></label>
     <div class="button-holder">
-        <button class="inventory-button">Add Vehicle</button>
+        <button type="submit" class="inventory-button" disabled>Update Vehicle</button>
     </div>
+    <input type="hidden" name="inv_id"
+    <% if(locals.inv_id) { %> value="<%= locals.inv_id %>"
+    <% } %>>
+    <script src="../../js/inv-update.js"></script>
 </form>

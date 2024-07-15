@@ -5,12 +5,19 @@ const utilities = require("../utilities/index")
 const accountController = require("../controllers/accountController")
 const formValidate = require("../utilities/account-validation")
 
+// Management route
+router.get("/", utilities.checkLogin, utilities.handleErrors(accountController.buildManagement))
+
 // Route to login
-router.get("/login", accountController.buildLogin)
+router.get("/login", utilities.handleErrors(accountController.buildLogin))
 
 // Route to registration
-router.get("/registration", accountController.buildRegistration)
+router.get("/registration", utilities.handleErrors(accountController.buildRegistration))
 
+// Route to update information
+router.get("/update", utilities.handleErrors(accountController.buildUpdate))
+
+// Registration Process
 router.post(
     "/registration", 
     formValidate.registrationRules(),
@@ -18,13 +25,28 @@ router.post(
     utilities.handleErrors(accountController.registerAccount)
 )
 
+// Login Process
 router.post(
   "/login",
    formValidate.loginRules(),
    formValidate.checkLoginData,
-   (req, res) => {
-     res.status(200).send('login process')
-   },
+   utilities.handleErrors(accountController.accountLogin)
+)
+
+// Update Information Process
+router.post(
+  "/update-info", 
+  formValidate.updateRules(),
+  formValidate.checkUpdateData,
+  utilities.handleErrors(accountController.updateAccount)
+)
+
+// Update Password Process
+router.post(
+  "/change-password",
+  formValidate.changePasswordRules(),
+  formValidate.checkPasswordData,
+  utilities.handleErrors(accountController.changePassword)
 )
 
 module.exports = router
