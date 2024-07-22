@@ -72,7 +72,52 @@ async function deleteVehicle(inv_id) {
         const data = await pool.query(sql, [inv_id])
         return data
     } catch (error) {
-        console.error("Delete Inventory Error")
+        console.error("Delete Inventory Error" + error)
+    }
+}
+
+// Add vehicle reviews
+async function addReview(review_text, inv_id, account_id) {
+    try {
+        const sql = 'INSERT INTO review (review_text, inv_id, account_id) VALUES ($1, $2, $3) RETURNING *'
+        const data = await pool.query(sql, [review_text, inv_id, account_id])
+        return data.rows
+    } catch (error) {
+        console.error("Add Review Error: " + error)
+    }
+}
+
+// Get vehicle reviews
+async function getReviewsByInvId(inv_id) {
+    try {
+        const sql = 'SELECT * FROM public.review WHERE inv_id = $1 ORDER BY review_date DESC'
+        const data = await pool.query(sql, [inv_id])
+        return data.rows
+    } catch (error) {
+        console.error("Get Reviews Error: " + error)
+    }
+}
+
+// Get account data for reviews
+async function getAccountDataByInvId(inv_id) {
+    try {
+      const sql = 'SELECT public.account.account_id, account_firstname FROM public.account INNER JOIN public.review ON public.review.account_id = public.account.account_id WHERE public.review.inv_id = $1'
+      const data = await pool.query(sql, [inv_id])
+      return data.rows
+    } catch (error) {
+        console.error("Get Account Data Error: " + error)
+    }
+      
+}
+
+// Get review and vehicle data with account_id
+async function getReviewAndVehicleData(account_id) {
+    try {
+        const sql = 'SELECT * FROM public.review INNER JOIN public.inventory ON public.review.inv_id = public.inventory.inv_id INNER JOIN public.account ON public.review.account_id = public.account.account_id WHERE public.review.account_id = $1'
+        const data = await pool.query(sql, [account_id])
+        return data.rows
+    } catch (error) {
+        console.error("Get Review and Vehicle Error: " + error)
     }
 }
 
@@ -82,4 +127,8 @@ module.exports = {getClassifications,
                 addNewClassification, 
                 addNewVehicle, 
                 updateVehicle, 
-                deleteVehicle};
+                deleteVehicle,
+                addReview,
+                getReviewsByInvId,
+                getAccountDataByInvId,
+                getReviewAndVehicleData};

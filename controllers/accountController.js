@@ -1,5 +1,6 @@
 const utilities = require("../utilities/index")
 const accountModel = require("../models/account-model")
+const invModel = require("../models/inventory-model")
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 require("dotenv").config()
@@ -128,7 +129,8 @@ async function accountLogin(req, res) {
 async function buildManagement(req, res, next) {
   let nav = await utilities.getNav()
   let links = utilities.getAccountLinks()
-  let content = utilities.buildAccountManagementView()
+  let review_data = await invModel.getReviewAndVehicleData(res.locals.accountData.account_id)
+  let content = await utilities.buildAccountManagementView(review_data)
     res.render("./account/management", {
       title: "Account Management",
       links,

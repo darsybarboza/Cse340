@@ -1,6 +1,8 @@
 const invModel = require("../models/inventory-model")
 const utilities = require("../utilities/")
 
+let current_inv_id
+
 const invCont = {}
 
 //Build inventory by classification view
@@ -23,17 +25,20 @@ invCont.buildByClassificationId = async function (req, res, next) {
 // Build individual view by inv_id
 invCont.buildByInvId = async function (req, res, next) {
   const inv_id = req.params.invId
-  const data = await invModel.getItemByInvId(inv_id)
-  const content = await utilities.buildIndividualView(data)
+  const car_data = await invModel.getItemByInvId(inv_id)
+  const review_data = await invModel.getReviewsByInvId(inv_id)
+  const users_data = await invModel.getAccountDataByInvId(inv_id)
+  const content = await utilities.buildIndividualView(car_data, review_data, users_data, inv_id)
   let nav = await utilities.getNav()
   let links = utilities.getAccountLinks()
-  const vehicle = `${data[0].inv_year} ${data[0].inv_model} ${data[0].inv_make}`
+  const vehicle = `${car_data[0].inv_year} ${car_data[0].inv_model} ${car_data[0].inv_make}`
   res.render("./inventory/detail", {
     title: vehicle,
     links,
     nav,
     content,
     errors: null,
+    inv_id
   })
 }
 
@@ -309,6 +314,46 @@ invCont.deleteVehicle = async function (req, res, next) {
     inv_year,
     inv_price,
     inv_id
+    })
+  }
+}
+
+// Add a review
+invCont.addReview = async function (req, res, next) {
+  let { review_text, inv_id } = req.body
+  inv_id = parseInt(inv_id)
+
+  let account_id = res.locals.accountData.account_id
+
+  const result = await invModel.addReview(review_text, inv_id, account_id)
+
+  const car_data = await invModel.getItemByInvId(inv_id)
+  const review_data = await invModel.getReviewsByInvId(inv_id)
+  const users_data = await invModel.getAccountDataByInvId(inv_id)
+  const content = await utilities.buildIndividualView(car_data, review_data, users_data)
+  let nav = await utilities.getNav()
+  let links = utilities.getAccountLinks()
+  const vehicle = `${car_data[0].inv_year} ${car_data[0].inv_model} ${car_data[0].inv_make}`
+
+  if (result) {
+    req.flash(
+      "notice", 
+      `The review was successfully added!`
+    )
+    res.redirect(`/inv/detail/${inv_id}`)
+  } else {
+    req.flash(
+      "notice", 
+      "Sorry, the review could not be added."
+    )
+    res.render("./inventory/detail", {
+      title: vehicle,
+      links,
+      nav,
+      content,
+      errors: null,
+      review_text,
+      inv_id
     })
   }
 }

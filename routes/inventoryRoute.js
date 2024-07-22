@@ -59,4 +59,12 @@ router.post(
     utilities.handleErrors(invController.deleteVehicle)
 )
 
+// On review added
+router.post(
+    "/detail/:invId",
+    formValidate.newReviewRules(),
+    formValidate.checkNewReviewData,
+    utilities.handleErrors(invController.addReview)
+)
+
 module.exports = router;

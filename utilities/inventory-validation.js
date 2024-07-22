@@ -1,4 +1,5 @@
 const utilities = require(".")
+const invModel = require("../models/inventory-model")
 const { body, validationResult } = require("express-validator")
 const validate = {}
 
@@ -175,6 +176,44 @@ validate.checkUpdateData = async (req, res, next) => {
             inv_color,
             inv_id
         })
+        return
+    }
+    next()
+}
+
+// Make sure the review_text is at least 10 characters long
+validate.newReviewRules = () => {
+    return [ body("review_text")
+    .trim()
+    .notEmpty()
+    .isLength({ min: 10})
+    .withMessage("Reviews must be at least 10 characters long.") // on error this message is sent
+    ]
+}
+
+// Check the review data
+validate.checkNewReviewData = async (req, res, next) => {
+    const { review_text, inv_id } = req.body
+
+    let errors = []
+    errors = validationResult(req)
+    if (!errors.isEmpty()) {
+        const car_data = await invModel.getItemByInvId(inv_id)
+        const review_data = await invModel.getReviewsByInvId(inv_id)
+        const users_data = await invModel.getAccountDataByInvId(inv_id)
+        const content = await utilities.buildIndividualView(car_data, review_data, users_data)
+        let nav = await utilities.getNav()
+        let links = utilities.getAccountLinks()
+        const vehicle = `${car_data[0].inv_year} ${car_data[0].inv_model} ${car_data[0].inv_make}`
+        res.render("./index", {
+            title: vehicle,
+            links,
+            nav,
+            content,
+            errors,
+            review_text,
+            inv_id
+          })
         return
     }
     next()
